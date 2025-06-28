@@ -1,8 +1,13 @@
+## Author Rishijeet Mishra
+## Change the company URL for now, will enhance to use to be used as param
+
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
 import logging
 import sys
+
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
