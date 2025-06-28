@@ -9,6 +9,7 @@ import sys
 import re
 import numpy as np
 from sklearn.linear_model import LinearRegression
+from openpyxl.styles import PatternFill
 
 
 # Configure logging
@@ -231,6 +232,34 @@ def main():
                 summary_df = pd.DataFrame(summary_data)
                 summary_df.to_excel(writer, sheet_name="Forecast Summary", index=False)
                 logging.info("Successfully wrote 'Forecast Summary' sheet.")
+
+                # --- ADD CONDITIONAL FORMATTING ---
+                logging.info("Applying conditional formatting to summary sheet...")
+                try:
+                    # Get the workbook and the summary worksheet objects
+                    workbook = writer.book
+                    worksheet = writer.sheets['Forecast Summary']
+
+                    # Define color fills for RAG status
+                    green_fill = PatternFill(start_color="C6EFCE", end_color="C6EFCE", fill_type="solid")
+                    amber_fill = PatternFill(start_color="FFEB9C", end_color="FFEB9C", fill_type="solid")
+                    red_fill = PatternFill(start_color="FFC7CE", end_color="FFC7CE", fill_type="solid")
+
+                    # Find the column index for 'Trend (RAG)' (1-based for openpyxl)
+                    rag_col_idx = summary_df.columns.get_loc('Trend (RAG)') + 1
+
+                    # Iterate over the cells in the RAG column (skip the header) and apply formatting
+                    for row in worksheet.iter_rows(min_row=2, max_row=worksheet.max_row, min_col=rag_col_idx, max_col=rag_col_idx):
+                        cell = row[0]
+                        if cell.value == "Green":
+                            cell.fill = green_fill
+                        elif cell.value == "Amber":
+                            cell.fill = amber_fill
+                        elif cell.value == "Red":
+                            cell.fill = red_fill
+                    logging.info("Conditional formatting applied successfully.")
+                except (KeyError, Exception) as e:
+                    logging.warning(f"Could not apply conditional formatting. Reason: {e}")
 
         logging.info(f"Excel file '{output_filename}' created successfully.")
     except Exception as e:
