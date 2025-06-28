@@ -188,9 +188,14 @@ def main():
 
     # Define which metrics to forecast from which tables
     metrics_to_forecast = {
-        'profit-loss': ['Sales', 'Net Profit'],
+        'profit-loss': ['Sales', 'Expenses', 'Net Profit'],
         'balance-sheet': ['Total Assets', 'Total Liabilities'],
-        'cash-flow': ['Cash from Operating Activity']
+        'cash-flow': [
+            'Cash from Operating Activity',
+            'Cash from Investing Activity',
+            'Cash from Financing Activity',
+            'Net Cash Flow'
+        ]
     }
     summary_data = []
 
