@@ -1,4 +1,5 @@
 # Screener.in Financial Data Scraper
+## Author Rishijeet Mishra
 
 This project contains a Python script to scrape financial data for a specific company from [screener.in](https://www.screener.in) and save it into a consolidated Excel file. Each financial statement (e.g., Quarterly Results, Profit & Loss) is saved to a separate sheet within the Excel workbook.
 
@@ -27,4 +28,4 @@ This project contains a Python script to scrape financial data for a specific co
     python scraper.py
     ```
 
-4.  **Check the output:** A file named `HDFCBANK_consolidated_financials.xlsx` will be created in the same directory.
+4.  **Check the output:** A file named `*_consolidated_financials.xlsx` will be created in the same directory.
