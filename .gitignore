@@ -1,6 +1,23 @@
-# Python
+# Byte-compiled / optimized files
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# Virtual Environment
+# This folder contains project-specific dependencies and should not be committed.
+venv/
+
+# IDE configuration
+# For IntelliJ/PyCharm
+.idea/
+
+# OS-generated files
+# For macOS
+.DS_Store
 
 # Output
 *.xlsx
+
+# Log files
+*.log
